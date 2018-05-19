@@ -49,7 +49,7 @@ export default {
   <div class='hello'>
     <h1>{{ msg }}</h1>
       <ul v-if='markers && markers.length'>
-      <li>MARKERS EXIST!</li>
+      <li>MARKERS EXIST! test</li>
     <li v-for='(marker,index) of markers' :key='index'>
       <p><strong>title: {{marker.Title}}</strong></p>
       <p>{{marker.County}}</p>
