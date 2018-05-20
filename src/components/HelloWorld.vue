@@ -103,6 +103,20 @@ export default {
     // JSON responses are automatically parsed.
     vm.markers = preppedData;
   },
+   mounted() {
+var mymap = L.map('mapid').setView([32.37685, -86.30078333], 15);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'mapbox-public-token-here'
+}).addTo(mymap);
+
+var marker = L.marker([32.37685, -86.30078333]).addTo(mymap);
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+
+  },
 };
 </script>
 <template>
@@ -121,12 +135,18 @@ export default {
     </li>
   </ul>
 
+Your location:
+ <div id="mapid"></div>
+
   </div>
 </template>
 
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
+#mapid { height: 580px; }
+
+
 h1,
 h2 {
   font-weight: normal;
