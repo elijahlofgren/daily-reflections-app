@@ -104,15 +104,25 @@ export default {
     vm.markers = preppedData;
   },
    mounted() {
+
+// createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
+var createLabelIcon = function(labelClass,labelText){
+  return L.divIcon({ 
+    className: labelClass,
+    html: labelText
+  })
+}
+
+
 var mymap = L.map('mapid').setView([32.37685, -86.30078333], 15);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox.streets',
-    accessToken: 'mapbox-public-token-here'
+    accessToken: 'TOKEN_HERE'
 }).addTo(mymap);
 
-var marker = L.marker([32.37685, -86.30078333]).addTo(mymap);
+var marker = L.marker([32.37685, -86.30078333], {icon:createLabelIcon("mapLabel","a place")}).addTo(mymap);
 marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
 
@@ -141,10 +151,16 @@ Your location:
   </div>
 </template>
 
-
+<style>
+.mapLabel{
+  font-size:20px;
+  white-space:nowrap;
+  color: red;
+}</style>
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 #mapid { height: 580px; }
+
 
 
 h1,
