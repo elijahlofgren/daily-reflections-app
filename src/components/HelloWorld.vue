@@ -1,5 +1,6 @@
 <script>
 // import MarkersData from '../data/MarkersData';
+import L from 'leaflet';
 
 // createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
 function createLabelIcon(labelClass, labelText) {
@@ -117,7 +118,7 @@ export default {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox.streets',
-      accessToken: 'TOKEN_HERE',
+      accessToken: 'token_here',
     }).addTo(mymap);
 
     const marker = L.marker([32.37685, -86.30078333], { icon: createLabelIcon('mapLabel', 'a place') }).addTo(mymap);
