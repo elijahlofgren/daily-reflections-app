@@ -1,6 +1,14 @@
 <script>
 // import MarkersData from '../data/MarkersData';
 
+// createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
+function createLabelIcon(labelClass, labelText) {
+  return L.divIcon({
+    className: labelClass,
+    html: labelText,
+  });
+}
+
 // Begin adapted from https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* Latitude/longitude spherical geodesy tools                         (c) Chris Veness 2002-2017  */
@@ -103,29 +111,17 @@ export default {
     // JSON responses are automatically parsed.
     vm.markers = preppedData;
   },
-   mounted() {
+  mounted() {
+    const mymap = L.map('mapid').setView([32.37685, -86.30078333], 15);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: 'TOKEN_HERE',
+    }).addTo(mymap);
 
-// createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
-var createLabelIcon = function(labelClass,labelText){
-  return L.divIcon({ 
-    className: labelClass,
-    html: labelText
-  })
-}
-
-
-var mymap = L.map('mapid').setView([32.37685, -86.30078333], 15);
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'TOKEN_HERE'
-}).addTo(mymap);
-
-var marker = L.marker([32.37685, -86.30078333], {icon:createLabelIcon("mapLabel","a place")}).addTo(mymap);
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
-
+    const marker = L.marker([32.37685, -86.30078333], { icon: createLabelIcon('mapLabel', 'a place') }).addTo(mymap);
+    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
   },
 };
 </script>
@@ -160,7 +156,6 @@ Your location:
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 #mapid { height: 580px; }
-
 
 
 h1,
