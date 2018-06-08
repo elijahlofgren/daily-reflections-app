@@ -167,6 +167,7 @@ export default {
 
 
 <style>
+
 .mapLabel{
   font-size:20px;
   white-space:nowrap;
