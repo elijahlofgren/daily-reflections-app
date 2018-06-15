@@ -70,6 +70,17 @@ export default {
   },
   created() {
     const vm = this;
+    /* eslint-disable */
+    navigator.geolocation.getCurrentPosition(
+      function success(position) {
+        let lat = position.coords.latitude;
+        alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+      },
+      function error(error) {
+        alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+      },
+    );
+    /* eslint-enable */
     const MarkersData = {
       markers: [
         {
@@ -155,8 +166,10 @@ export default {
         preppedData[i].latUrl = `${latUrlPrefix}${marker.LatKey}`;
 
         // Measure between two points:
+        const lat = preppedData[i].Coordinates[0];
+        const lon = preppedData[i].Coordinates[1];
         const result = distanceTo(
-          { lat: 33.45123333, lon: -86.71606666 },
+          { lat, lon },
           { lat: 32.37685, lon: -86.30078333 },
         );
         preppedData[i].distance = result;
