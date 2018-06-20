@@ -100,7 +100,8 @@ export default {
       // console.log(JSON.stringify(preppedData));
 
       // JSON responses are automatically parsed.
-      vm.markers = preppedData;
+      vm.markers = preppedData.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+
     }
   },
   mounted() {

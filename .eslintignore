@@ -5,3 +5,5 @@ src/App.vue
 main.js
 src/router/index.js
 src/components/*
+src/data/*
+src/util/*
