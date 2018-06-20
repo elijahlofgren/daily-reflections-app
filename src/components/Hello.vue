@@ -3,21 +3,29 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-
         <div class='hello'>
             <h1>{{ msg }}</h1>
-              <ul v-if='markers && markers.length'>
-              <li>MARKERS EXIST! test</li>
-            <li v-for='(marker,index) of markers' :key='index'>
-              <p><strong>title: {{marker.Title}}</strong></p>
-              <p>{{marker.County}}</p>
-              <a :href='marker.hereMapsUrl'>Directions (Here Map)</a><br />
-              <a :href='marker.gmapsUrl'>Directions (Google Map)</a><br />
-              <a :href='marker.waymarkUrl'>Waymark</a><br />
-              <a :href='marker.latUrl'>Description of marker</a><br />
-              <b>Distance: {{marker.distance}}</b><br />
-            </li>
-          </ul>
+            <v-flex xs12 sm6 offset-sm3 v-for='(marker,index) of markers' :key='index'>
+              <v-card>
+                <!-- <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px"></v-card-media> -->        
+                <v-card-title primary-title>
+                  <div>
+                    <h3><a :href='marker.latUrl' target="_blank">{{ marker.Title }}</a></h3>
+                    <div>County: {{ marker.County }}</div>
+                    <b>Distance: {{marker.distance}}</b>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <!-- <v-btn :href='marker.gmapsUrl' target="_blank">Google Map</v-btn> -->
+                  <v-btn dark small color="primary" :href='marker.gmapsUrl' target="_blank">
+                    <v-icon dark>fa fa-map-marker</v-icon>
+                  </v-btn>
+                  <v-btn dark small color="primary" :href='marker.waymarkUrl' target="_blank">
+                    <v-icon dark>fa fa-map-signs</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
 
         Your location:
         <div id="mapid"></div>
@@ -40,16 +48,17 @@
 
 
 <style>
-
-.mapLabel{
-  font-size:20px;
-  white-space:nowrap;
+.mapLabel {
+  font-size: 20px;
+  white-space: nowrap;
   color: red;
-}</style>
+}
+</style>
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
-#mapid { height: 580px; }
-
+#mapid {
+  height: 580px;
+}
 
 h1,
 h2 {
