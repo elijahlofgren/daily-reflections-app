@@ -20,8 +20,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      markers: null,
-      msg: 'Welcome to Your Vue.js App',
+      markers: null
     };
   },
   created() {
@@ -45,8 +44,25 @@ export default {
     }
   },
   methods: {
+    swipe (direction, marker) {
+      console.log("Swipe to " + direction + " for maker id: " + marker.Id);
+      var storage = window.localStorage;
+      if (direction === 'right')
+      {
+        marker.visited = true;
+        storage.setItem(marker.Id, "visited") // Pass a key name and its value to add or update that key.
+        var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
+        console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
+      }
+      if (direction === 'left')
+      {
+        marker.visited = false;
+        storage.removeItem(marker.Id) // Pass a key name to remove that key from storage.
+      }
+    },
     gpsReady() {
       let vm = this;
+      var storage = window.localStorage;
       const preppedData = MarkersData.markers;
       // URL like
       // https://www.google.com/maps/?q=32.37685,-86.30078333
@@ -62,7 +78,14 @@ export default {
           preppedData[i].hereMapsUrl = `${hereMapsUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
           preppedData[i].waymarkUrl = `${waymarkUrlPrefix}${marker.Waymark}`;
           preppedData[i].latUrl = `${latUrlPrefix}${marker.LatKey}`;
-
+          preppedData[i].visited = false;
+          
+          var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
+          console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
+          if (isVisited != null)
+          {
+            preppedData[i].visited = true;
+          }
           // Measure between two points:
           const lat = preppedData[i].Coordinates[0];
           const lon = preppedData[i].Coordinates[1];
@@ -78,6 +101,7 @@ export default {
 
       // JSON responses are automatically parsed.
       vm.markers = preppedData.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+
     }
   },
   mounted() {
