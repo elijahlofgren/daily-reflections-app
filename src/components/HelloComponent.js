@@ -20,8 +20,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      markers: null,
-      msg: 'Welcome to Your Vue.js App',
+      markers: null
     };
   },
   created() {
@@ -30,14 +29,14 @@ export default {
     if (useHardCodedGps) {
       vm.gpsReady();
     } else {
-    /* eslint-disable */
-    navigator.geolocation.getCurrentPosition(
-      function success(position) {
-        userLat = position.coords.latitude;
-        userLon = position.coords.longitude;
-        //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
-        vm.gpsReady();
-      },
+      /* eslint-disable */
+      navigator.geolocation.getCurrentPosition(
+        function success(position) {
+          userLat = position.coords.latitude;
+          userLon = position.coords.longitude;
+          //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+          vm.gpsReady();
+        },
         function error(error) {
           alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         },
@@ -74,10 +73,10 @@ export default {
         }
       }
 
-        // console.log(JSON.stringify(preppedData));
+      // console.log(JSON.stringify(preppedData));
 
-        // JSON responses are automatically parsed.
-        vm.markers = preppedData;
+      // JSON responses are automatically parsed.
+      vm.markers = preppedData;
     }
   },
   mounted() {
