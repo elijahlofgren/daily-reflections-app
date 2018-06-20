@@ -6,11 +6,18 @@
         <div class='hello'>
             <h1>{{ msg }}</h1>
             <v-flex xs12 sm6 offset-sm3 v-for='(marker,index) of markers' :key='index'>
-              <v-card>
+              <v-card 
+              v-touch="{
+                left: () => swipe('left', marker),
+                right: () => swipe('right', marker)
+              }">
                 <!-- <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px"></v-card-media> -->        
                 <v-card-title primary-title>
                   <div>
-                    <h3><a :href='marker.latUrl' target="_blank">{{ marker.Title }}</a></h3>
+                    <h3>
+                    <v-icon v-if="marker.visited">fa fa-check-circle</v-icon>
+                    <a :href='marker.latUrl' target="_blank">{{ marker.Title }}</a>
+                    </h3>
                     <div>County: {{ marker.County }}</div>
                     <b>Distance: {{marker.distance}}</b>
                   </div>

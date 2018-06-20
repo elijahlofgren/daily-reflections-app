@@ -1,6 +1,7 @@
 export default {
   markers: [
     {
+      Id: '854eaa99-25db-4abd-81f2-99d71cfbab6b',
       City: 'Vestavia',
       Coordinates: [33.45123333, -86.71606666],
       County: 'Jackson',
@@ -9,6 +10,7 @@ export default {
       Waymark: 'WMKTM7',
     },
     {
+      Id: 'b0894e64-6821-4e02-b2ce-7e86cb6bc704',
       City: 'Montgomery',
       Coordinates: [32.37685, -86.30078333],
       County: 'Montgomery',
@@ -17,6 +19,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: '1331f3d9-cf1c-48d0-85dc-39975298b37c',
       City: 'Headland',
       Coordinates: [31.35148333, -85.33825],
       County: 'Henry',
@@ -25,6 +28,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: '51f20b5f-646f-4db3-979e-ca08574d02a2',
       City: 'Screamer Community',
       Coordinates: [31.68158333, -85.2021],
       County: 'Henry',
@@ -33,6 +37,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: '60dfef0f-3d22-4fee-827f-97a3ccf56102',
       City: 'Fort Mitchell',
       Coordinates: [32.3441, -85.021],
       County: 'Russell',
@@ -41,6 +46,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: 'b7b144c8-8b04-4bff-ad1a-9f568b27ead3',
       City: 'Holy Trinity',
       Coordinates: [32.22061666, -85.00588333],
       County: 'Russell',
@@ -49,6 +55,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: 'cbf69012-a727-4e71-a85d-a7b6a8b96b89',
       City: 'Highland Home',
       Coordinates: [31.95226666, -86.3137],
       County: 'Crenshaw',
@@ -57,6 +64,7 @@ export default {
       Waymark: 'tbd',
     },
     {
+      Id: 'b3d6cf34-ebb6-466c-bdb6-55ca5169148a',
       City: 'Birmingham',
       Coordinates: [33.5704, -86.7248],
       County: 'Jefferson',
