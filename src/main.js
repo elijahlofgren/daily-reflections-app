@@ -6,6 +6,7 @@ import 'vuetify/dist/vuetify.css';
 import 'leaflet/dist/leaflet.css';
 import VueCordova from 'vue-cordova';
 import VueHead from 'vue-head';
+import 'font-awesome/css/font-awesome.css'
 
 import App from './App';
 import router from './router';

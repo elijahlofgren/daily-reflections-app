@@ -1,12 +1,12 @@
 <script>
 // import MarkersData from '../data/MarkersData';
-import L from 'leaflet';
+import L from "leaflet";
 
 // createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
 function createLabelIcon(labelClass, labelText) {
   return L.divIcon({
     className: labelClass,
-    html: labelText,
+    html: labelText
   });
 }
 
@@ -49,9 +49,9 @@ function distanceTo(point1, point2) {
   const Δφ = φ2 - φ1;
   const Δλ = λ2 - λ1;
 
-  const a = (Math.sin(Δφ / 2) * Math.sin(Δφ / 2))
-        + (Math.cos(φ1) * Math.cos(φ2)
-        * Math.sin(Δλ / 2) * Math.sin(Δλ / 2));
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const d = R * c;
   const miles = d * 0.000621;
@@ -67,78 +67,78 @@ let userLon = -86.30078333;
 const MarkersData = {
   markers: [
     {
-      City: 'Vestavia',
+      City: "Vestavia",
       Coordinates: [33.45123333, -86.71606666],
-      County: 'Jackson',
-      Title: 'Anthony L. Barnes/The Cahaba Pumping Station',
-      LatKey: '37-175',
-      Waymark: 'WMKTM7',
+      County: "Jackson",
+      Title: "Anthony L. Barnes/The Cahaba Pumping Station",
+      LatKey: "37-175",
+      Waymark: "WMKTM7"
     },
     {
-      City: 'Montgomery',
+      City: "Montgomery",
       Coordinates: [32.37685, -86.30078333],
-      County: 'Montgomery',
-      Title: 'Alabama Highway Patrol',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Montgomery",
+      Title: "Alabama Highway Patrol",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Headland',
+      City: "Headland",
       Coordinates: [31.35148333, -85.33825],
-      County: 'Henry',
-      Title: 'First Baptist Church of Headland',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Henry",
+      Title: "First Baptist Church of Headland",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Screamer Community',
+      City: "Screamer Community",
       Coordinates: [31.68158333, -85.2021],
-      County: 'Henry',
-      Title: 'Liberty United Methodist Church / Hilliardsville',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Henry",
+      Title: "Liberty United Methodist Church / Hilliardsville",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Fort Mitchell',
+      City: "Fort Mitchell",
       Coordinates: [32.3441, -85.021],
-      County: 'Russell',
-      Title: 'Indian Ball Ground',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Russell",
+      Title: "Indian Ball Ground",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Holy Trinity',
+      City: "Holy Trinity",
       Coordinates: [32.22061666, -85.00588333],
-      County: 'Russell',
-      Title: 'Spanish Fort',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Russell",
+      Title: "Spanish Fort",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Highland Home',
+      City: "Highland Home",
       Coordinates: [31.95226666, -86.3137],
-      County: 'Crenshaw',
-      Title: 'Site of Highland Home College',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      County: "Crenshaw",
+      Title: "Site of Highland Home College",
+      LatKey: "tbd",
+      Waymark: "tbd"
     },
     {
-      City: 'Birmingham',
+      City: "Birmingham",
       Coordinates: [33.5704, -86.7248],
-      County: 'Jefferson',
-      Title: 'East Lake Park',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
-    },
-  ],
+      County: "Jefferson",
+      Title: "East Lake Park",
+      LatKey: "tbd",
+      Waymark: "tbd"
+    }
+  ]
 };
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   data() {
     return {
       markers: null,
-      msg: 'Welcome to Your Vue.js App',
+      msg: "Welcome to Your Vue.js App"
     };
   },
   created() {
@@ -147,17 +147,19 @@ export default {
     if (useHardCodedGps) {
       vm.gpsReady();
     } else {
-    /* eslint-disable */
-    navigator.geolocation.getCurrentPosition(
-      function success(position) {
-        userLat = position.coords.latitude;
-        userLon = position.coords.longitude;
-        //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
-        vm.gpsReady();
-      },
-        function error(error) {
-          alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+      /* eslint-disable */
+      navigator.geolocation.getCurrentPosition(
+        function success(position) {
+          userLat = position.coords.latitude;
+          userLon = position.coords.longitude;
+          //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+          vm.gpsReady();
         },
+        function error(error) {
+          alert(
+            "code: " + error.code + "\n" + "message: " + error.message + "\n"
+          );
+        }
       );
     }
   },
@@ -167,16 +169,21 @@ export default {
       const preppedData = MarkersData.markers;
       // URL like
       // https://www.google.com/maps/?q=32.37685,-86.30078333
-      const gmapUrlPrefix = 'https://www.google.com/maps/?q=';
-      const hereMapsUrlPrefix = 'https://wego.here.com/search/';
-      const waymarkUrlPrefix = 'http://www.waymarking.com/waymarks/';
-      const latUrlPrefix = 'http://www.lat34north.com/HistoricMarkersAL/MarkerDetail.cfm?KeyID=';
+      const gmapUrlPrefix = "https://www.google.com/maps/?q=";
+      const hereMapsUrlPrefix = "https://wego.here.com/search/";
+      const waymarkUrlPrefix = "http://www.waymarking.com/waymarks/";
+      const latUrlPrefix =
+        "http://www.lat34north.com/HistoricMarkersAL/MarkerDetail.cfm?KeyID=";
       for (let i = 0; i < preppedData.length; i += 1) {
         const marker = preppedData[i];
         if (marker.Coordinates && marker.Coordinates.length > 1) {
           // Map URLS
-          preppedData[i].gmapsUrl = `${gmapUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
-          preppedData[i].hereMapsUrl = `${hereMapsUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
+          preppedData[i].gmapsUrl = `${gmapUrlPrefix}${marker.Coordinates[0]},${
+            marker.Coordinates[1]
+          }`;
+          preppedData[i].hereMapsUrl = `${hereMapsUrlPrefix}${
+            marker.Coordinates[0]
+          },${marker.Coordinates[1]}`;
           preppedData[i].waymarkUrl = `${waymarkUrlPrefix}${marker.Waymark}`;
           preppedData[i].latUrl = `${latUrlPrefix}${marker.LatKey}`;
 
@@ -185,51 +192,66 @@ export default {
           const lon = preppedData[i].Coordinates[1];
           const result = distanceTo(
             { lat, lon },
-            { lat: userLat, lon: userLon },
+            { lat: userLat, lon: userLon }
           );
           preppedData[i].distance = result;
         }
       }
 
-        // console.log(JSON.stringify(preppedData));
+      // console.log(JSON.stringify(preppedData));
 
-        // JSON responses are automatically parsed.
-        vm.markers = preppedData;
+      // JSON responses are automatically parsed.
+      vm.markers = preppedData;
     }
   },
   mounted() {
-    const mymap = L.map('mapid').setView([userLat, userLon], 15);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox.streets',
-      accessToken: 'pk.eyJ1IjoiZWxvZmdyZW4iLCJhIjoiY2poZmUxanNpMTd5dzMwbWQybTN2MjhjaiJ9.cKtaDiFIjeHJAoIt7h7ZDw',
-    }).addTo(mymap);
+    const mymap = L.map("mapid").setView([userLat, userLon], 15);
+    L.tileLayer(
+      "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
+      {
+        attribution:
+          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: "mapbox.streets",
+        accessToken:
+          "pk.eyJ1IjoiZWxvZmdyZW4iLCJhIjoiY2poZmUxanNpMTd5dzMwbWQybTN2MjhjaiJ9.cKtaDiFIjeHJAoIt7h7ZDw"
+      }
+    ).addTo(mymap);
 
-    const marker = L.marker([userLat, userLon], { icon: createLabelIcon('mapLabel', 'a place') }).addTo(mymap);
-    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
-  },
+    const marker = L.marker([userLat, userLon], {
+      icon: createLabelIcon("mapLabel", "a place")
+    }).addTo(mymap);
+    marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+  }
 };
 </script>
 <template>
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-
         <div class='hello'>
             <h1>{{ msg }}</h1>
-              <ul v-if='markers && markers.length'>
-              <li>MARKERS EXIST! test</li>
-            <li v-for='(marker,index) of markers' :key='index'>
-              <p><strong>title: {{marker.Title}}</strong></p>
-              <p>{{marker.County}}</p>
-              <a :href='marker.hereMapsUrl'>Directions (Here Map)</a><br />
-              <a :href='marker.gmapsUrl'>Directions (Google Map)</a><br />
-              <a :href='marker.waymarkUrl'>Waymark</a><br />
-              <a :href='marker.latUrl'>Description of marker</a><br />
-              <b>Distance: {{marker.distance}}</b><br />
-            </li>
-          </ul>
+            <v-flex xs12 sm6 offset-sm3 v-for='(marker,index) of markers' :key='index'>
+              <v-card>
+                <!-- <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px"></v-card-media> -->        
+                <v-card-title primary-title>
+                  <div>
+                    <h3><a :href='marker.latUrl' target="_blank">{{ marker.Title }}</a></h3>
+                    <div>County: {{ marker.County }}</div>
+                    <b>Distance: {{marker.distance}}</b>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <!-- <v-btn :href='marker.gmapsUrl' target="_blank">Google Map</v-btn> -->
+                  <v-btn dark small color="primary" :href='marker.gmapsUrl' target="_blank">
+                    <v-icon dark>fa fa-map-marker</v-icon>
+                  </v-btn>
+                  <v-btn dark small color="primary" :href='marker.waymarkUrl' target="_blank">
+                    <v-icon dark>fa fa-map-signs</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-flex>
 
         Your location:
         <div id="mapid"></div>
@@ -252,16 +274,17 @@ export default {
 
 
 <style>
-
-.mapLabel{
-  font-size:20px;
-  white-space:nowrap;
+.mapLabel {
+  font-size: 20px;
+  white-space: nowrap;
   color: red;
-}</style>
+}
+</style>
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
-#mapid { height: 580px; }
-
+#mapid {
+  height: 580px;
+}
 
 h1,
 h2 {
