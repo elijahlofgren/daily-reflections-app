@@ -52,8 +52,10 @@ export default {
       {
         marker.visited = true;
         storage.setItem(marker.Id, "visited") // Pass a key name and its value to add or update that key.
+        var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
+        console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
       }
-      if (direction === 'right')
+      if (direction === 'left')
       {
         marker.visited = false;
         storage.removeItem(marker.Id) // Pass a key name to remove that key from storage.
