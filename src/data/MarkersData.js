@@ -1,23 +1,27 @@
 export default {
+  // Data adapted from http://lat34north.com/HistoricMarkersAL/CountyMap.cfm (click a)
   markers: [
+    // Begin Birmingham County
     {
-      Id: '854eaa99-25db-4abd-81f2-99d71cfbab6b',
-      City: 'Vestavia',
-      Coordinates: [33.45123333, -86.71606666],
-      County: 'Jackson',
-      Title: 'Anthony L. Barnes/The Cahaba Pumping Station',
-      LatKey: '37-175',
-      Waymark: 'WMKTM7',
-    },
-    {
-      Id: 'b0894e64-6821-4e02-b2ce-7e86cb6bc704',
-      City: 'Montgomery',
-      Coordinates: [32.37685, -86.30078333],
-      County: 'Montgomery',
-      Title: 'Alabama Highway Patrol',
+      Id: 'b3d6cf34-ebb6-466c-bdb6-55ca5169148a',
+      City: 'Birmingham',
+      Coordinates: [33.5704, -86.7248],
+      County: 'Jefferson',
+      Title: 'East Lake Park',
       LatKey: 'tbd',
       Waymark: 'tbd',
     },
+    // Begin Crenshaw County
+    {
+      Id: 'cbf69012-a727-4e71-a85d-a7b6a8b96b89',
+      City: 'Highland Home',
+      Coordinates: [31.95226666, -86.3137],
+      County: 'Crenshaw',
+      Title: 'Site of Highland Home College',
+      LatKey: 'tbd',
+      Waymark: 'tbd',
+    },
+    // Begin Henry County
     {
       Id: '1331f3d9-cf1c-48d0-85dc-39975298b37c',
       City: 'Headland',
@@ -36,6 +40,91 @@ export default {
       LatKey: 'tbd',
       Waymark: 'tbd',
     },
+    // Begin Jackson County
+    {
+      Id: '854eaa99-25db-4abd-81f2-99d71cfbab6b',
+      City: 'Vestavia',
+      Coordinates: [33.45123333, -86.71606666],
+      County: 'Jackson',
+      Title: 'Anthony L. Barnes/The Cahaba Pumping Station',
+      LatKey: '37-175',
+      Waymark: 'WMKTM7',
+    },
+    // Begin Montgomery County
+    {
+      Id: '',
+      City: 'Montgomery',
+      Coordinates: [1, -1],
+      County: 'Montgomery',
+      Title: 'template',
+      LatKey: '',
+      Waymark: '',
+    },
+    {
+      Id: '9c26616c-0bf2-404f-a657-e890a507694b',
+      City: 'Montgomery',
+      Coordinates: [32.4265, -86.28295],
+      County: 'Montgomery',
+      Title: '167th Infantry (4th Alabama) / Alabama\'s Own',
+      LatKey: '51-112',
+      Waymark: 'WMDAZX',
+    },
+    {
+      Id: 'a63fed38-7198-439d-a467-2dfaaf5f4bfc',
+      City: 'Montgomery',
+      Coordinates: [32.42655, -86.28316666],
+      County: 'Montgomery',
+      Title: '37th Division',
+      LatKey: '51-111',
+      Waymark: 'WMD9DV',
+    },
+    {
+      Id: '37099076-45a3-4963-a110-f0b7417f8750',
+      City: 'Montgomery',
+      Coordinates: [32.42655, -86.28316666],
+      County: 'Montgomery',
+      Title: '37th Division',
+      LatKey: '51-153',
+      Waymark: 'WMD99A',
+    },
+    {
+      Id: '1dcb6a88-630d-48d0-a674-0a5fade1ccb3',
+      City: 'Montgomery',
+      Coordinates: [32.37613333, -86.3063],
+      County: 'Montgomery',
+      Title: 'A County Older Than the State-Montgomery County-1816',
+      LatKey: '51-016',
+      Waymark: 'WMD5XX',
+    },
+    {
+      Id: '018f2f5c-d841-4319-8945-0349163cc541',
+      City: 'Montgomery',
+      Coordinates: [32.3774, -86.30145],
+      County: 'Montgomery',
+      Title: 'A Nation Divided / Cradle of the Confederacy',
+      LatKey: '51-017',
+      Waymark: 'WMKWBA',
+    },
+    {
+      Id: '495cfe9d-d6fb-427a-a706-b3ca4baf5331',
+      City: 'Montgomery',
+      Coordinates: [32.25726666, -86.37406666],
+      County: 'Montgomery',
+      Title: 'Abner McGehee / Early Alabama Entrepreneur',
+      LatKey: '51-018',
+      Waymark: 'WMJT7R',
+    },
+    // to put in order
+    {
+      Id: 'b0894e64-6821-4e02-b2ce-7e86cb6bc704',
+      City: 'Montgomery',
+      Coordinates: [32.37685, -86.30078333],
+      County: 'Montgomery',
+      Title: 'Alabama Highway Patrol',
+      LatKey: 'tbd',
+      Waymark: 'tbd',
+    },
+    // Begin Russell County
     {
       Id: '60dfef0f-3d22-4fee-827f-97a3ccf56102',
       City: 'Fort Mitchell',
@@ -54,23 +143,7 @@ export default {
       LatKey: 'tbd',
       Waymark: 'tbd',
     },
-    {
-      Id: 'cbf69012-a727-4e71-a85d-a7b6a8b96b89',
-      City: 'Highland Home',
-      Coordinates: [31.95226666, -86.3137],
-      County: 'Crenshaw',
-      Title: 'Site of Highland Home College',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
-    },
-    {
-      Id: 'b3d6cf34-ebb6-466c-bdb6-55ca5169148a',
-      City: 'Birmingham',
-      Coordinates: [33.5704, -86.7248],
-      County: 'Jefferson',
-      Title: 'East Lake Park',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
-    },
+
+
   ],
 };
