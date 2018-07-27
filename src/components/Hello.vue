@@ -25,15 +25,15 @@
                   <v-btn dark small color="primary" :href='marker.gmapsUrl' target="_blank">
                     <v-icon dark>fa fa-map-marker</v-icon>
                   </v-btn>
-                  <v-btn dark small color="primary" :href='marker.waymarkUrl' target="_blank">
+                  <v-btn v-if="marker.waymarkUrl" dark small color="primary" :href='marker.waymarkUrl' target="_blank">
                     <v-icon dark>fa fa-map-signs</v-icon>
                   </v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
 
-        <!-- Your location: -->
-        <!-- <div id="mapid"></div>-->
+        <!-- Your location:
+         <div id="mapid"></div> -->
   </div> 
       </v-layout>
     </v-slide-y-transition>

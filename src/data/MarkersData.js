@@ -52,15 +52,6 @@ export default {
     },
     // Begin Montgomery County
     {
-      Id: '',
-      City: 'Montgomery',
-      Coordinates: [1, -1],
-      County: 'Montgomery',
-      Title: 'template',
-      LatKey: '',
-      Waymark: '',
-    },
-    {
       Id: '9c26616c-0bf2-404f-a657-e890a507694b',
       City: 'Montgomery',
       Coordinates: [32.4265, -86.28295],
@@ -114,16 +105,62 @@ export default {
       LatKey: '51-018',
       Waymark: 'WMJT7R',
     },
-    // to put in order
+    {
+      Id: '9922fb53-f59e-4a71-bc2f-42b34f4ecd64',
+      City: 'Montgomery',
+      Coordinates: [32.38211666, -86.30328333],
+      County: 'Montgomery',
+      Title: 'Abram Mordecai / Mordecai\'s Cotton Gin: Alabama\'s First',
+      LatKey: '51-019',
+      Waymark: 'WMD68Z',
+    },
+    {
+      Id: '0e1bfaf3-9923-4aa3-847e-f8cacf3d29ea',
+      City: 'Montgomery',
+      Coordinates: [32.38168333, -86.3453],
+      County: 'Montgomery',
+      Title: 'Air University / Maxwell Air Force Base',
+      LatKey: '51-022',
+      Waymark: 'WME4QG',
+    },
+    {
+      Id: 'aee1c8ff-eb8b-4e7c-87e7-ea886c68f3b2',
+      City: 'Montgomery',
+      Coordinates: [32.3616, -86.307],
+      County: 'Montgomery',
+      Title: 'Alabama Governor\'s Mansion Built 1907',
+      LatKey: '51-002',
+      Waymark: 'WMDE1Y',
+    },
     {
       Id: 'b0894e64-6821-4e02-b2ce-7e86cb6bc704',
       City: 'Montgomery',
       Coordinates: [32.37685, -86.30078333],
       County: 'Montgomery',
       Title: 'Alabama Highway Patrol',
-      LatKey: 'tbd',
-      Waymark: 'tbd',
+      LatKey: '51-117',
+      Waymark: 'WMDCXP',
     },
+    {
+      Id: '858f3c14-7ee4-436c-8874-eaae867f7032',
+      City: 'Montgomery',
+      Coordinates: [32.37788333, -86.31926666],
+      County: 'Montgomery',
+      Title: 'Alabama River: The Grand Avenue',
+      LatKey: '51-118',
+      Waymark: null,
+    },
+    /* Begin template
+    {
+      Id: '',
+      City: 'Montgomery',
+      Coordinates: [1, -1],
+      County: 'Montgomery',
+      Title: 'template',
+      LatKey: '',
+      Waymark: '',
+    },
+    End template */
     // Begin Russell County
     {
       Id: '60dfef0f-3d22-4fee-827f-97a3ccf56102',

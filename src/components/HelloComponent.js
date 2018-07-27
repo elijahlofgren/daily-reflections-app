@@ -76,7 +76,11 @@ export default {
           // Map URLS
           preppedData[i].gmapsUrl = `${gmapUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
           preppedData[i].hereMapsUrl = `${hereMapsUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
-          preppedData[i].waymarkUrl = `${waymarkUrlPrefix}${marker.Waymark}`;
+          if (marker.Waymark) {
+            preppedData[i].waymarkUrl = `${waymarkUrlPrefix}${marker.Waymark}`;
+          } else {
+            preppedData[i].waymarkUrl = null;
+          }
           preppedData[i].latUrl = `${latUrlPrefix}${marker.LatKey}`;
           preppedData[i].visited = false;
           
@@ -105,6 +109,8 @@ export default {
     }
   },
   mounted() {
+    /*
+    demo of showing label on map.
     const mymap = L.map('mapid').setView([userLat, userLon], 15);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -114,6 +120,6 @@ export default {
     }).addTo(mymap);
 
     const marker = L.marker([userLat, userLon], { icon: createLabelIcon('mapLabel', 'a place') }).addTo(mymap);
-    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
+    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup(); */
   },
 };
