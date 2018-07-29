@@ -1,6 +1,6 @@
-# al-markers-app
+# al-farmers-markets-app
 
-> Shows locations of AL historical markers
+> Shows locations of AL farmers markets
 
 ## Build Setup
 

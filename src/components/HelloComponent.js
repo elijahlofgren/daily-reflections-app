@@ -1,3 +1,4 @@
+import axios from 'axios';
 import L from 'leaflet';
 import MarkersData from '../data/MarkersData';
 import GpsUtils from '../util/GpsUtils';
@@ -20,83 +21,101 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      markers: null
+      markets: null,
+      rawSpreadsheetData: null,
+      rawMarkersData: null
     };
   },
   created() {
     const vm = this;
+    vm.rawMarkersData = [];
+    axios.get("https://sheets.googleapis.com/v4/spreadsheets/15wmNoQh5XE0KygS1N1zIYuejPPDRm6tNUdFt9GyhEUc/values/Sheet1?key=AIzaSyAEgmM-Fnzc3ihs54orFIiwkyaZo9ywKQs")
+      .then((response) => {
+        vm.rawSpreadsheetData = response.data;
+        console.log(vm.rawSpreadsheetData.values);
+        // Start at index 1 since index 0 is column headers
+        const startRowIndex = 1;
+        for (let i = startRowIndex; i < vm.rawSpreadsheetData.values.length; i++) {
+          let row = vm.rawSpreadsheetData.values[i];
+          let item = {
+            county: row[0],
+            name: row[1],
+            hours: row[2].replace('\n', '<br />'),
+            website: row[3],
+            facebook: row[4],
+            address: row[5],
+            lat: row[6],
+            lng: row[7]
+          };
+          vm.rawMarkersData.push(item);
+        }
 
-    if (useHardCodedGps) {
-      vm.gpsReady();
-    } else {
-      /* eslint-disable */
-      navigator.geolocation.getCurrentPosition(
-        function success(position) {
-          userLat = position.coords.latitude;
-          userLon = position.coords.longitude;
-          //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+        if (useHardCodedGps) {
           vm.gpsReady();
-        },
-        function error(error) {
-          alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-        },
-      );
-    }
+        } else {
+          /* eslint-disable */
+          navigator.geolocation.getCurrentPosition(
+            function success(position) {
+              userLat = position.coords.latitude;
+              userLon = position.coords.longitude;
+              //alert('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+              vm.gpsReady();
+            },
+            function error(error) {
+              alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+            },
+          );
+        }
+      }).catch((err) => {
+        alert('Error' + err);
+      })
   },
   methods: {
-    swipe (direction, marker) {
+    /*swipe(direction, marker) {
       console.log("Swipe to " + direction + " for maker id: " + marker.Id);
       var storage = window.localStorage;
-      if (direction === 'right')
-      {
+      if (direction === 'right') {
         marker.visited = true;
         storage.setItem(marker.Id, "visited") // Pass a key name and its value to add or update that key.
         var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
         console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
       }
-      if (direction === 'left')
-      {
+      if (direction === 'left') {
         marker.visited = false;
         storage.removeItem(marker.Id) // Pass a key name to remove that key from storage.
       }
-    },
+    },*/
     gpsReady() {
       let vm = this;
-      var storage = window.localStorage;
-      const preppedData = MarkersData.markers;
+      //var storage = window.localStorage;
+      const preppedData = vm.rawMarkersData;
+
+
       // URL like
-      // https://www.google.com/maps/?q=32.37685,-86.30078333
+      // https://www.google.com/maps/?q=123 Somewhere,Montgomery, AL 36109
       const gmapUrlPrefix = 'https://www.google.com/maps/?q=';
-      const hereMapsUrlPrefix = 'https://wego.here.com/search/';
-      const waymarkUrlPrefix = 'http://www.waymarking.com/waymarks/';
-      const latUrlPrefix = 'http://www.lat34north.com/HistoricMarkersAL/MarkerDetail.cfm?KeyID=';
       for (let i = 0; i < preppedData.length; i += 1) {
         const marker = preppedData[i];
-        if (marker.Coordinates && marker.Coordinates.length > 1) {
+        if (marker.lat && marker.lng) {
           // Map URLS
-          preppedData[i].gmapsUrl = `${gmapUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
-          preppedData[i].hereMapsUrl = `${hereMapsUrlPrefix}${marker.Coordinates[0]},${marker.Coordinates[1]}`;
-          if (marker.Waymark) {
-            preppedData[i].waymarkUrl = `${waymarkUrlPrefix}${marker.Waymark}`;
-          } else {
-            preppedData[i].waymarkUrl = null;
-          }
-          preppedData[i].latUrl = `${latUrlPrefix}${marker.LatKey}`;
-          preppedData[i].visited = false;
-          
-          var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
-          console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
-          if (isVisited != null)
-          {
+          preppedData[i].gmapsUrl = `${gmapUrlPrefix}${marker.address}`;
+          //preppedData[i].visited = false;
+
+          //var isVisited = storage.getItem(marker.Id); // Pass a key name to get its value.
+          /*console.log("isVisited for " + marker.Id + " is set to: " + isVisited);
+          if (isVisited != null) {
             preppedData[i].visited = true;
-          }
+          }*/
           // Measure between two points:
-          const lat = preppedData[i].Coordinates[0];
-          const lon = preppedData[i].Coordinates[1];
-          const result = GpsUtils.distanceTo(
-            { lat, lon },
-            { lat: userLat, lon: userLon },
-          );
+          const lat = preppedData[i].lat;
+          const lon = preppedData[i].lng;
+          const result = GpsUtils.distanceTo({
+            lat,
+            lon
+          }, {
+            lat: userLat,
+            lon: userLon
+          }, );
           preppedData[i].distance = result;
         }
       }
@@ -104,7 +123,7 @@ export default {
       // console.log(JSON.stringify(preppedData));
 
       // JSON responses are automatically parsed.
-      vm.markers = preppedData.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+      vm.markets = preppedData.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
 
     }
   },
