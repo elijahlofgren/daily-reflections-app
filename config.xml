@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="1" id="com.elijahlofgren.almarkers" ios-CFBundleVersion="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>al-markers-app</name>
-    <description>Shows locations of AL historical markers</description>
+<widget android-versionCode="1" id="com.elijahlofgren.alfarmersmarkets" ios-CFBundleVersion="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>al-farmers-markets-app</name>
+    <description>Shows locations of AL farmers markets</description>
     <author email="elijahlofgren@gmail.com" href="https://www/elijahlofgren.com/">
         Apache Cordova Team
     </author>

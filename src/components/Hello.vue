@@ -4,7 +4,7 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
         <div class='hello'>
-            <v-flex xs12 sm6 offset-sm3 v-for='(market,index) of markets' :key='index'>
+            <v-flex xs12 sm12 v-for='(market,index) of markets' :key='index'>
              <!-- <v-card 
               v-touch="{
                 left: () => swipe('left', market),
