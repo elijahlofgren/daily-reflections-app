@@ -1,6 +1,5 @@
 import axios from 'axios';
 import L from 'leaflet';
-import MarkersData from '../data/MarkersData';
 import GpsUtils from '../util/GpsUtils';
 
 // createLabelIcon is from https://gis.stackexchange.com/questions/157696/leaflet-js-text-is-not-showing-on-map
