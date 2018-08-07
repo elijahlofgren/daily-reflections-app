@@ -20,6 +20,10 @@ export default {
       reflections: null,
       rawSpreadsheetData: null,
       currentSectionIndex: 0,
+      stepperModel: 0,
+      nowMonth: '',
+      nowDay: '',
+      nowYear: ''
     };
   },
   created() {
@@ -38,7 +42,7 @@ export default {
         for (let i = startRowIndex; i < vm.rawSpreadsheetData.values.length; i++) {
           let row = vm.rawSpreadsheetData.values[i];
           let item = {
-            date: row[0],
+            date: new Date(row[0]),
             title: row[1],
             sections: [
               convertNewLinesToBrTag(row[2]),
@@ -53,13 +57,51 @@ export default {
 
         vm.reflections = reflections;
         // TODO: Select by date instead of hard coded.
-        vm.reflection = vm.reflections[0];
+
+        let now = new Date();
+        // Adapted from https://stackoverflow.com/a/2013332/908677
+        let nowMonth = now.getUTCMonth() + 1; //months from 1-12
+        let nowDay = now.getUTCDate();
+        let nowYear = now.getUTCFullYear();
+        vm.nowMonth = nowMonth;
+        vm.nowDay = nowDay;
+        vm.nowYear = nowYear;
+        console.log('nowMonth = ' + nowMonth);
+        console.log('nowDay = ' + nowDay);
+        console.log('nowYear = ' + nowYear);
+        
+
+        vm.reflections.forEach(function (reflection) {
+          if (reflection.date)
+          {
+          let entryMonth = reflection.date.getUTCMonth() + 1; //months from 1-12
+          let entryDay = reflection.date.getUTCDate();
+          let entryYear = reflection.date.getUTCFullYear();
+          console.log('entryMonth = ' + entryMonth);
+          console.log('entryDay = ' + entryDay);
+          console.log('entryYear = ' + entryYear);
+          
+          if (
+            nowYear === entryYear &&
+            nowMonth === entryMonth &&
+            nowDay === entryDay
+
+          ) {
+            vm.reflection = reflection;
+            console.log('reflection = ');
+            console.log(reflection);
+          }
+        }
+        });
+
+
       }).catch((err) => {
         alert('Error' + err);
       })
   },
   methods: {
     swipe(direction, marker) {
+      let vm = this;
       console.log("Swipe to " + direction);
 
       if (direction === 'left') {
@@ -69,7 +111,7 @@ export default {
       } else {
         let nextSectionIndex = vm.currentSectionIndex + 1;
         if (vm.reflection.sections.length > nextSectionIndex) {
-          vm.currentSectionIndex--;
+          vm.currentSectionIndex++;
         }
       }
     },

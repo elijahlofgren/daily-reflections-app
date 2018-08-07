@@ -3,6 +3,7 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
+        <div v-if="!reflection">Loading or no entry found for today's date</div>
         <div v-if="reflection" class='hello'>
             <v-card 
               v-touch="{
@@ -13,23 +14,51 @@
                 <v-card-title primary-title>
                   <div>
                     <h3>
-                    {{ reflection.title}}
+                    {{ reflection.title}} ({{nowYear}}-{{nowMonth}}-{{nowDay}})
                   </h3>
+                    <v-stepper v-model="stepperModel">
+      <v-stepper-header>
+        <v-stepper-step :complete="currentSectionIndex > 0" step="0"></v-stepper-step>
+  
+        <v-divider></v-divider>
+  
+        <v-stepper-step :complete="currentSectionIndex > 1" step="1"></v-stepper-step>
+  <v-divider></v-divider>
+  
+        <v-stepper-step :complete="currentSectionIndex > 2" step="2"></v-stepper-step>
+  <v-divider></v-divider>
+  
+        <v-stepper-step :complete="currentSectionIndex > 3" step="3"></v-stepper-step>
+  <v-divider></v-divider>
+  
+        <v-stepper-step :complete="currentSectionIndex == 4" step="4"></v-stepper-step>
+  
+      </v-stepper-header>
+  
+   
+    </v-stepper>
                     <div v-html="reflection.sections[currentSectionIndex]"></div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
+                <table>
+                <tr>
+                <td style="width:100px">&nbsp;
  <v-btn v-if="currentSectionIndex > 0"
                    dark small color="primary"
                     @click="currentSectionIndex--">
                     Back
                   </v-btn>
-
+                  </td>
+                  <td style="width:100px">&nbsp;
                   <v-btn v-if="reflection.sections[currentSectionIndex + 1]"
                    dark small color="primary"
                     @click="currentSectionIndex++">
                     Next
                   </v-btn>
+                  </td>
+                  </tr>
+                  </table>
                 </v-card-actions>
               </v-card>
   </div> 
