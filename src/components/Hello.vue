@@ -3,43 +3,35 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <div class='hello'>
-            <v-flex xs12 sm12 v-for='(market,index) of markets' :key='index'>
-             <!-- <v-card 
+        <div v-if="reflection" class='hello'>
+            <v-card 
               v-touch="{
-                left: () => swipe('left', market),
-                right: () => swipe('right', market)
-              }">-->
-              <v-card >
+                left: () => swipe('left', reflection),
+                right: () => swipe('right', reflection)
+              }">
                 <!-- <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px"></v-card-media> -->        
                 <v-card-title primary-title>
                   <div>
                     <h3>
-                    {{ market.name}}
-                   <!-- <v-icon v-if="market.visited">fa fa-check-circle</v-icon>
-                    <a :href='market.latUrl' target="_blank">{{ market.Title }}</a> -->
-                    </h3>
-                    <div v-html="market.hours"></div>
-                    <div>County: {{ market.county }}</div>
-                    <b>Distance: {{market.distance}} miles</b>
+                    {{ reflection.title}}
+                  </h3>
+                    <div v-html="reflection.sections[currentSectionIndex]"></div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn dark small color="primary" :href='market.gmapsUrl' target="_blank">
-                    <v-icon dark>fa fa-map-marker</v-icon>
+ <v-btn v-if="currentSectionIndex > 0"
+                   dark small color="primary"
+                    @click="currentSectionIndex--">
+                    Back
                   </v-btn>
-                  <v-btn v-if="market.facebook" dark small color="primary" :href='market.facebook' target="_blank">
-                    <v-icon dark>fa fa-facebook</v-icon>
-                  </v-btn>
-                  <v-btn v-if="market.website" dark small color="primary" :href='market.website' target="_blank">
-                    <v-icon dark>fa fa-globe</v-icon>
+
+                  <v-btn v-if="reflection.sections[currentSectionIndex + 1]"
+                   dark small color="primary"
+                    @click="currentSectionIndex++">
+                    Next
                   </v-btn>
                 </v-card-actions>
               </v-card>
-            </v-flex>
-
-        <!-- Your location:
-         <div id="mapid"></div> -->
   </div> 
       </v-layout>
     </v-slide-y-transition>
